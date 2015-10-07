@@ -10,7 +10,7 @@ function respond() {
 
   if(request.text && (botRegex.test(request.text) || botRegex2.test(request.text))) {
     this.res.writeHead(200);
-    postMessage(request);
+    postMessage(request.text);
     this.res.end();
   } else {
     console.log("don't care");
@@ -19,9 +19,9 @@ function respond() {
   }
 }
 
-function postMessage(request) {
+function postMessage(text) {
   var botResponse, options, body, botReq;
-  if(request.text=="Ugh") {
+  if(text=="Ugh") {
     botReponse = "I'm sorry about that :("
   } else {
     botResponse = cool() + " Hello, what is up? " + cool();
