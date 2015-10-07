@@ -12,8 +12,7 @@ function respond() {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
-  }
-  else if(request.text && botRegex2.test(request.text)) {
+  } else if(request.text && botRegex2.test(request.text)) {
     this.res.writeHead(200);
     postMessage2();
     this.res.end();
@@ -26,11 +25,9 @@ function respond() {
 
 function postMessage() {
   var botResponse, options, body, botReq;
-  if(request.text=="Ugh") {
-    botReponse = "I'm sorry about that :("
-  } else {
-    botResponse = cool() + " Hello, what is up? " + cool();
-  }
+  
+  botResponse = cool() + " Hello, what is up? " + cool();
+  
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
