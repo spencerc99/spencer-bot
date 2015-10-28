@@ -19,9 +19,9 @@ function respond() {
   }
 }
 
-function postMessage(request) {
+function postMessage(text) {
   var botResponse, options, body, botReq;
-  if(request.text=="Ugh") {
+  if(text=="Ugh") {
     botReponse = "I'm sorry about that :("
   } else {
     botResponse = cool() + " Hello, what is up? " + cool();
