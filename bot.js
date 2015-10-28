@@ -6,9 +6,8 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
       botRegex = /^spencer bot$/;
-      botRegex2 = /^Ugh$/;
 
-  if(request.text && (botRegex.test(request.text) || botRegex2.test(request.text))) {
+  if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
@@ -19,13 +18,11 @@ function respond() {
   }
 }
 
-function postMessage(text) {
+function postMessage() {
   var botResponse, options, body, botReq;
-  if(text.equals("Ugh")) {
-    botReponse = "I'm sorry about that :("
-  } else {
-    botResponse = cool() + " Hello, what is up? " + cool();
-  }
+
+  botResponse = cool() + " Hello, what is up? " + cool();
+
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
