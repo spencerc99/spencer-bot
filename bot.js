@@ -5,11 +5,12 @@ var botID = process.env.BOT_ID;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^spencer bot$/;
+      botRegex = /^spencer bot$/i,
+      botRegex2 = /^ugh$/i;
 
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text && (botRegex.test(request.text) || botRegex2.test(request.text))) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage(request.text, botRegex, botRegex2);
     this.res.end();
   } else {
     console.log("don't care");
@@ -18,11 +19,14 @@ function respond() {
   }
 }
 
-function postMessage() {
+function postMessage(message, botRegex1, botRegex2) {
   var botResponse, options, body, botReq;
-
-  botResponse = cool() + " Hello, what is up? " + cool();
-
+  if (message.match(botRegex1)) {
+    botResponse = cool() + " Hello, what is up? " + cool();
+  } else if (message.match(botRegex2)) {
+    botResponse = "I'm sorry to hear that.";
+  }
+  
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
